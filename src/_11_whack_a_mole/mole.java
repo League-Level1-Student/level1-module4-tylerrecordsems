@@ -18,6 +18,8 @@ public class mole implements ActionListener {
 	Random ran = new Random();
 	JButton mole;
 int score=0;
+int score1=0;
+Date timeAtStart = new Date();
 	public void run() {
 		frame.add(panel);
 		panel.setLayout(new GridLayout(5,3));
@@ -71,7 +73,7 @@ int score=0;
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 if(score==10) {
-	//START WORK HERE:::   endGame(5,10);
+	  endGame(timeAtStart,score1);
 }
 		if(arg0.getSource()==mole	) {
 	 System.out.println("WHACK!!");
@@ -79,12 +81,17 @@ if(score==10) {
 	// drawButtons(ran.nextInt(15));
 }else {
 	 System.out.println("Missed!");
-	score-=1;
+	score1+=1;
 }
+		if(score1==5) {
+			JOptionPane.showMessageDialog(null, "You lost and the mole got away!");
+			System.exit(0);
+		}
 frame.dispose();
 frame=new JFrame();
 panel= new JPanel();
 panel.setLayout(new GridLayout(5,3));
+
 frame.add(panel);
 frame.setVisible(true);
 drawButtons(ran.nextInt(15));
